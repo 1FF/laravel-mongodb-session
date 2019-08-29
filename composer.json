@@ -1,0 +1,34 @@
+{
+    "name": "1ff/laravel-mongodb-session",
+    "description": "A mongodb session driver for laravel",
+    "type": "library",
+    "version": "0.1",
+    "require": {
+        "jenssegers/mongodb": "3.*",
+        "illuminate/session": "5.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vihren Ganev",
+            "email": "vihren@appsforfit.com"
+        },
+        {
+            "name": "Tihomir Tonov",
+            "email": "tishoj@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "ForFit\\Session\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ForFit\\Session\\SessionServiceProvider"
+            ]
+        }
+    }
+}
