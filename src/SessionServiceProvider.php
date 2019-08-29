@@ -19,7 +19,7 @@ class SessionServiceProvider extends ParentServiceProvider
      */
     public function boot()
     {
-        Session::extend('mongo', function ($app) {
+        Session::extend('mongodb', function ($app) {
             $configs = $app['config']->get('session');
             $connection = $app['db']->connection($configs['connection'] ?? null);
 
