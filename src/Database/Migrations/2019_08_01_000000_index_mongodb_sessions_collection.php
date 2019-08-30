@@ -23,6 +23,6 @@ class IndexMongodbSessionsCollection extends Migration
      */
     public function down()
     {
-        Artisan::call('mongodb:session:dropindex', ['index' => 'expiration_ttl_1']);
+        Artisan::call('mongodb:session:dropindex', ['index' => 'expires_at_ttl']);
     }
 }
