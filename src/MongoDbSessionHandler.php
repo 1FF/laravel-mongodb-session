@@ -48,7 +48,7 @@ class MongoDbSessionHandler implements SessionHandlerInterface
     {
         $session = $this->query()->find($sessionId);
 
-        return $session ? $session['data'] : '';
+        return $session ? $session['payload'] : '';
     }
 
     /**
