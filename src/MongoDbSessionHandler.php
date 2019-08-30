@@ -3,6 +3,7 @@
 namespace ForFit\Session;
 
 use MongoDB\BSON\UTCDateTime;
+use MongoDB\BSON\Binary;
 use MongoDB\Driver\Exception\BulkWriteException;
 use SessionHandlerInterface;
 
@@ -97,13 +98,13 @@ class MongoDbSessionHandler implements SessionHandlerInterface
     /**
      * Returns the payload to be stored in the database
      *
-     * @param array|null $data
+     * @param string|null $data
      * @return array
      */
     protected function buildPayload($data)
     {
         return [
-            'data' => $data,
+            'payload' => new Binary($data, Binary::TYPE_OLD_BINARY),
             'expires_at' => new UTCDateTime((time() + $this->minutes * 60) * 1000),
             'last_activity' => new UTCDateTime,
         ];
