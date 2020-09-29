@@ -37,7 +37,7 @@ class MongodbSessionDropIndex extends Command
 
         DB::connection('mongodb')->getMongoDB()->command([
             'dropIndexes' => $collection,
-            'indexes' => $this->argument('index'),
+            'index' => $this->argument('index'),
         ], [
             'readPreference' => new ReadPreference(ReadPreference::RP_PRIMARY)
         ]);
