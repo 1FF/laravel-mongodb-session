@@ -3,10 +3,11 @@
 A MongoDB session driver for Laravel
 
 | **Laravel<br/>Version** | **Package<br/>Version** | **Install using<br/>this command**                |
-|---------------------|---------------------|---------------------------------------------------|
-| 5.x.x, 6.x          | 1.x.x               | composer require 1ff/laravel-mongodb-session:^1.0 |
-| 7.x, 8.x            | 2.x.x               | Comming soon                                      |
-| 9.x                 | 3.x.x               | Comming soon                                      |
+|------------------------|-------------------------|---------------------------------------------------|
+| 5.x.x, 6.x             | 1.x.x                   | composer require 1ff/laravel-mongodb-session:^1.0 |
+| 7.x                    | 2.x.x                   | composer require 1ff/laravel-mongodb-session:^2.0 |
+| 8.x                    | 3.x.x                   | composer require 1ff/laravel-mongodb-session:^3.0 |
+| 9.x                    | 4.x.x                   | Comming soon                                      |
 
 Installation
 ------------
