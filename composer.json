@@ -2,10 +2,10 @@
     "name": "1ff/laravel-mongodb-session",
     "description": "A mongodb session driver for laravel",
     "type": "library",
-    "version": "1.1.2",
+    "version": "2.0.0",
     "require": {
-        "jenssegers/mongodb": "^3.5|^3.6",
-        "illuminate/session": "^5.0|^6.0"
+        "jenssegers/mongodb": "~3.7",
+        "illuminate/session": "^7.0"
     },
     "license": "MIT",
     "authors": [
