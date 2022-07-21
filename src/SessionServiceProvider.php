@@ -9,16 +9,18 @@ use Illuminate\Support\ServiceProvider as ParentServiceProvider;
 
 class SessionServiceProvider extends ParentServiceProvider
 {
-
     /**
      * Register any application services.
      *
      * @throws \Exception
      * @return void
-     *
      */
     public function boot()
     {
+        if (config('session.default') !== 'mongodb') {
+            return;
+        }
+
         Session::extend('mongodb', function ($app) {
             $configs = $app['config']->get('session');
             $connection = $app['db']->connection($configs['connection'] ?? null);
