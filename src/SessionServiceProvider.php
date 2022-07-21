@@ -17,7 +17,7 @@ class SessionServiceProvider extends ParentServiceProvider
      */
     public function boot()
     {
-        if (config('session.default') !== 'mongodb') {
+        if (config('session.driver') !== 'mongodb') {
             return;
         }
 
