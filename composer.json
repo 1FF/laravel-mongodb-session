@@ -2,12 +2,11 @@
     "name": "1ff/laravel-mongodb-session",
     "description": "A mongodb session driver for laravel",
     "type": "library",
-    "version": "5.0.4",
+    "version": "5.0.0",
     "require": {
         "php": "^8.1",
         "illuminate/session": "^10.0",
-        "mongodb/laravel-mongodb": "^4.0",
-        "ext-mongodb": "*"
+        "mongodb/laravel-mongodb": "dev-master"
     },
 
     "license": "MIT",
