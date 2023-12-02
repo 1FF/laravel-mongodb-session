@@ -33,9 +33,10 @@ class MongodbSessionIndex extends Command
      */
     public function handle()
     {
+        $connection = config('session.connection');
         $collection = config('session.table');
 
-        DB::connection('mongodb')->getMongoDB()->command([
+        DB::connection($connection)->getMongoDB()->command([
             'createIndexes' => $collection,
             'indexes' => [
                 [
