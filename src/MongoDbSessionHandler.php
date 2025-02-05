@@ -28,7 +28,7 @@ class MongoDbSessionHandler implements SessionHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function open($savePath, $sessionName)
+    public function open($path, $name): bool
     {
         return true;
     }
@@ -36,7 +36,7 @@ class MongoDbSessionHandler implements SessionHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function close()
+    public function close(): bool
     {
         return true;
     }
@@ -44,9 +44,9 @@ class MongoDbSessionHandler implements SessionHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function read($sessionId)
+    public function read($id): false|string
     {
-        $session = $this->query()->find($sessionId);
+        $session = $this->query()->find($id);
 
         return $session ? $session['payload'] : '';
     }
@@ -54,11 +54,11 @@ class MongoDbSessionHandler implements SessionHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function write($sessionId, $data)
+    public function write($id, $data): bool
     {
         try {
             return (bool) $this->query()
-                ->where('_id', $sessionId)
+                ->where('_id', $id)
                 ->update($this->buildPayload($data), ['upsert' => true]);
         } catch (BulkWriteException $exception) {
             // high concurrency exception
@@ -69,9 +69,9 @@ class MongoDbSessionHandler implements SessionHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function destroy($sessionId)
+    public function destroy($id): bool
     {
-        $this->query()->where('_id', $sessionId)->delete();
+        $this->query()->where('_id', $id)->delete();
 
         return true;
     }
@@ -79,7 +79,7 @@ class MongoDbSessionHandler implements SessionHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function gc($lifetime)
+    public function gc($max_lifetime): false|int
     {
         // Garbage collection is handled by ttl index in the database
         return true;
@@ -88,7 +88,6 @@ class MongoDbSessionHandler implements SessionHandlerInterface
     /**
      * Returns the query builder
      *
-     * @return \Jenssegers\Mongodb\Query\Builder
      */
     protected function query()
     {
