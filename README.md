@@ -34,3 +34,60 @@ Advantages
 
 Enjoy!
 ------
+
+## Testing
+
+This package includes a comprehensive test suite to ensure the MongoDB session handler works correctly. The tests cover:
+
+1. Basic session operations (read, write, destroy)
+2. Integration with Laravel's session system
+3. HTTP session functionality
+4. Laravel's testing helpers integration
+
+### Running the Tests
+
+To run the tests, follow these steps:
+
+1. Make sure MongoDB is installed and running on your system
+2. Install the package dependencies with Composer:
+
+```bash
+composer install
+```
+
+3. Run the tests with PHPUnit:
+
+```bash
+vendor/bin/phpunit
+```
+
+### Expected Test Results
+
+When all tests are passing, you should see output similar to:
+
+```
+PHPUnit 10.x.x by Sebastian Bergmann and contributors.
+
+...............                                                   15 / 15 (100%)
+
+Time: 00:00.444, Memory: 32.00 MB
+
+OK (15 tests, 41 assertions)
+```
+
+### Testing Environments
+
+The tests are compatible with:
+
+- PHP 8.1+
+- Laravel 10.x
+- MongoDB 4.0+
+
+### Test Coverage
+
+- **Unit Tests**: These test the `MongoDbSessionHandler` methods directly (open, close, read, write, destroy, gc)
+- **Feature Tests**: These test the integration with Laravel's session functionality
+- **HTTP Tests**: These test session handling in HTTP requests and session persistence
+- **Laravel Helper Tests**: These test integration with Laravel's testing helpers like `withSession` and `flushSession`
+
+If you encounter any issues with the tests, please submit an issue on the GitHub repository.

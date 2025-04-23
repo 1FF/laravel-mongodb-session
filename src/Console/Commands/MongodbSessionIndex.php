@@ -12,26 +12,14 @@ use MongoDB\Driver\ReadPreference;
 class MongodbSessionIndex extends Command
 {
 
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
+    /** The name and signature of the console command. */
     protected $signature = 'mongodb:session:index';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
+    /** The console command description. */
     protected $description = 'Create indexes on the mongodb `sessions` collection';
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
+    /** Execute the console command. */
+    public function handle(): void
     {
         $collection = config('session.table');
 
