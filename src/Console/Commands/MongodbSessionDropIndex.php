@@ -4,7 +4,7 @@ namespace ForFit\Session\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use \MongoDB\Driver\ReadPreference;
+use MongoDB\Driver\ReadPreference;
 
 /**
  * Drop the indexes created by MongodbSessionIndex
@@ -39,7 +39,7 @@ class MongodbSessionDropIndex extends Command
             'dropIndexes' => $collection,
             'index' => $this->argument('index'),
         ], [
-            'readPreference' => new ReadPreference(ReadPreference::RP_PRIMARY)
+            'readPreference' => new ReadPreference(ReadPreference::PRIMARY)
         ]);
     }
 }

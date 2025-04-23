@@ -4,7 +4,7 @@ namespace ForFit\Session\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use \MongoDB\Driver\ReadPreference;
+use MongoDB\Driver\ReadPreference;
 
 /**
  * Create indexes for the Session collection
@@ -46,7 +46,7 @@ class MongodbSessionIndex extends Command
                 ]
             ]
         ], [
-            'readPreference' => new ReadPreference(ReadPreference::RP_PRIMARY)
+            'readPreference' => new ReadPreference(ReadPreference::PRIMARY)
         ]);
     }
 }
