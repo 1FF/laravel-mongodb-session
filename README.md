@@ -61,6 +61,17 @@ composer install
 vendor/bin/phpunit
 ```
 
+### Continuous Integration
+
+The package includes a GitHub Actions workflow that automatically runs tests on PHP 8.1 with Laravel 10.x against MongoDB 7. The workflow:
+
+1. Sets up a MongoDB service container
+2. Installs PHP with MongoDB extension
+3. Caches Composer dependencies for faster builds
+4. Runs the test suite
+
+This ensures all tests pass before merging new changes.
+
 ### Expected Test Results
 
 When all tests are passing, you should see output similar to:
