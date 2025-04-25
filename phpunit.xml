@@ -6,7 +6,7 @@
     colors="true"
     processIsolation="false"
     stopOnFailure="false"
-    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
     cacheDirectory=".phpunit.cache"
     backupStaticProperties="false"
 >
@@ -24,4 +24,4 @@
         <env name="MONGODB_PORT" value="27017"/>
         <env name="MONGODB_DATABASE" value="laravel_session_test"/>
     </php>
-</phpunit>
+</phpunit> 
