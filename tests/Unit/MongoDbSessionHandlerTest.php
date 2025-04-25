@@ -4,8 +4,8 @@ namespace ForFit\Session\Tests\Unit;
 
 use ForFit\Session\MongoDbSessionHandler;
 use ForFit\Session\Tests\TestCase;
+use Illuminate\Support\Carbon;
 use MongoDB\BSON\Binary;
-use MongoDB\BSON\UTCDateTime;
 
 class MongoDbSessionHandlerTest extends TestCase
 {
@@ -13,23 +13,23 @@ class MongoDbSessionHandlerTest extends TestCase
      * @var MongoDbSessionHandler
      */
     protected $handler;
-    
+
     /**
      * @var string
      */
     protected $sessionId;
-    
+
     /**
      * Set up the test environment.
      */
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->handler = $this->app['session.store']->getHandler();
         $this->sessionId = md5(uniqid('test_session'));
     }
-    
+
     /**
      * Test the open method
      */
@@ -37,7 +37,7 @@ class MongoDbSessionHandlerTest extends TestCase
     {
         $this->assertTrue($this->handler->open('path', 'name'));
     }
-    
+
     /**
      * Test the close method
      */
@@ -45,7 +45,7 @@ class MongoDbSessionHandlerTest extends TestCase
     {
         $this->assertTrue($this->handler->close());
     }
-    
+
     /**
      * Test reading non-existent session
      */
@@ -53,33 +53,33 @@ class MongoDbSessionHandlerTest extends TestCase
     {
         $this->assertEquals('', $this->handler->read('non_existent_id'));
     }
-    
+
     /**
      * Test write and read session
      */
     public function test_write_and_read_session(): void
     {
         $data = 'test_data_' . time();
-        
+
         // Write session data
         $this->assertTrue($this->handler->write($this->sessionId, $data));
-        
+
         // Read it back
         $readData = $this->handler->read($this->sessionId);
-        
+
         $this->assertEquals($data, $readData);
-        
+
         // Check database directly
         $session = $this->app['db']->table(config('session.table'))
             ->where('_id', $this->sessionId)
             ->first();
-            
+
         $this->assertNotNull($session);
-        $this->assertInstanceOf(Binary::class, $session['payload']);
-        $this->assertInstanceOf(UTCDateTime::class, $session['expires_at']);
-        $this->assertInstanceOf(UTCDateTime::class, $session['last_activity']);
+        $this->assertInstanceOf(Binary::class, $session->payload);
+        $this->assertInstanceOf(Carbon::class, $session->expires_at);
+        $this->assertInstanceOf(Carbon::class, $session->last_activity);
     }
-    
+
     /**
      * Test destroy session
      */
@@ -87,23 +87,23 @@ class MongoDbSessionHandlerTest extends TestCase
     {
         // First write a session
         $this->handler->write($this->sessionId, 'test_data');
-        
+
         // Verify it exists
         $exists = $this->app['db']->table(config('session.table'))
             ->where('_id', $this->sessionId)
             ->exists();
         $this->assertTrue($exists);
-        
+
         // Now destroy it
         $this->assertTrue($this->handler->destroy($this->sessionId));
-        
+
         // Verify it's gone
         $exists = $this->app['db']->table(config('session.table'))
             ->where('_id', $this->sessionId)
             ->exists();
         $this->assertFalse($exists);
     }
-    
+
     /**
      * Test garbage collection
      */
@@ -112,4 +112,4 @@ class MongoDbSessionHandlerTest extends TestCase
         // gc should return a truthy value as it's handled by MongoDB TTL index
         $this->assertNotFalse($this->handler->gc(100));
     }
-} 
+}
