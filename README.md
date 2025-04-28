@@ -4,6 +4,7 @@ A MongoDB session driver for Laravel
 
 | **Laravel<br/>Version** | **Package<br/>Version** | **Install using<br/>this command**                |
 |-------------------------|-------------------------|---------------------------------------------------|
+| 12.x                    | 7.x.x                   | composer require 1ff/laravel-mongodb-session:^7.0 |
 | 11.x                    | 6.x.x                   | composer require 1ff/laravel-mongodb-session:^6.0 |
 | 10.x                    | 5.x.x                   | composer require 1ff/laravel-mongodb-session:^5.0 |
 | 9.x                     | 4.x.x                   | composer require 1ff/laravel-mongodb-session:^4.0 |
