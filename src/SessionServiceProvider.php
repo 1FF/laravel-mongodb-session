@@ -13,10 +13,9 @@ class SessionServiceProvider extends ParentServiceProvider
      * Register any application services.
      *
      * @throws \Exception
-     * @return void
      *
      */
-    public function boot()
+    public function boot(): void
     {
         if (config('session.driver') !== 'mongodb') {
             return;
