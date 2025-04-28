@@ -2,6 +2,8 @@
 
 namespace ForFit\Session;
 
+use Illuminate\Database\ConnectionInterface;
+use Illuminate\Database\Query\Builder;
 use MongoDB\BSON\Binary;
 use MongoDB\BSON\UTCDateTime;
 use MongoDB\Driver\Exception\BulkWriteException;
@@ -9,16 +11,11 @@ use SessionHandlerInterface;
 
 class MongoDbSessionHandler implements SessionHandlerInterface
 {
-    protected $connection;
-    protected $minutes;
-    protected $table;
+    protected ConnectionInterface $connection;
+    protected int $minutes;
+    protected string $table;
 
-    /**
-     * @param \Illuminate\Database\ConnectionInterface $connection
-     * @param string $table
-     * @param integer $minutes
-     */
-    public function __construct($connection, $table = 'sessions', $minutes = 60)
+    public function __construct(ConnectionInterface $connection, string $table = 'sessions', int $minutes = 60)
     {
         $this->connection = $connection;
         $this->minutes = (int)$minutes;
@@ -89,7 +86,7 @@ class MongoDbSessionHandler implements SessionHandlerInterface
      * Returns the query builder
      *
      */
-    protected function query()
+    protected function query(): Builder
     {
         return $this->connection->table($this->table);
     }
@@ -100,7 +97,7 @@ class MongoDbSessionHandler implements SessionHandlerInterface
      * @param string|null $data
      * @return array
      */
-    protected function buildPayload($data)
+    protected function buildPayload($data): array
     {
         return [
             'payload' => new Binary($data, Binary::TYPE_OLD_BINARY),
