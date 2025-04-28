@@ -23,7 +23,7 @@ class MongodbSessionDropIndex extends Command
     {
         $collection = config('session.table');
 
-        DB::connection('mongodb')->getMongoDB()->command([
+        DB::connection('mongodb')->getDatabase()->command([
             'dropIndexes' => $collection,
             'index' => $this->argument('index'),
         ], [

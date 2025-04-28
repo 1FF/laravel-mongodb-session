@@ -2,8 +2,8 @@
 
 namespace ForFit\Session;
 
-use MongoDB\BSON\UTCDateTime;
 use MongoDB\BSON\Binary;
+use MongoDB\BSON\UTCDateTime;
 use MongoDB\Driver\Exception\BulkWriteException;
 use SessionHandlerInterface;
 
@@ -14,14 +14,14 @@ class MongoDbSessionHandler implements SessionHandlerInterface
     protected $table;
 
     /**
-     * @param  \Illuminate\Database\ConnectionInterface  $connection
+     * @param \Illuminate\Database\ConnectionInterface $connection
      * @param string $table
      * @param integer $minutes
      */
     public function __construct($connection, $table = 'sessions', $minutes = 60)
     {
         $this->connection = $connection;
-        $this->minutes = (int) $minutes;
+        $this->minutes = (int)$minutes;
         $this->table = $table;
     }
 
@@ -48,7 +48,7 @@ class MongoDbSessionHandler implements SessionHandlerInterface
     {
         $session = $this->query()->find($id);
 
-        return $session ? $session['payload'] : '';
+        return $session ? $session->payload : '';
     }
 
     /**
@@ -57,7 +57,7 @@ class MongoDbSessionHandler implements SessionHandlerInterface
     public function write($id, $data): bool
     {
         try {
-            return (bool) $this->query()
+            return (bool)$this->query()
                 ->where('_id', $id)
                 ->update($this->buildPayload($data), ['upsert' => true]);
         } catch (BulkWriteException $exception) {

@@ -23,7 +23,7 @@ class MongodbSessionIndex extends Command
     {
         $collection = config('session.table');
 
-        DB::connection('mongodb')->getMongoDB()->command([
+        DB::connection('mongodb')->getDatabase()->command([
             'createIndexes' => $collection,
             'indexes' => [
                 [
