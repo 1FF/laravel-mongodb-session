@@ -1,6 +1,6 @@
 {
     "name": "1ff/laravel-mongodb-session",
-    "description": "A mongodb session driver for laravel!",
+    "description": "A mongodb session driver for laravel!!!",
     "type": "library",
     "version": "5.0.4",
     "require": {
