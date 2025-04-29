@@ -9,6 +9,7 @@
         "mongodb/laravel-mongodb": "^4.0",
         "ext-mongodb": "*"
     },
+
     "license": "MIT",
     "authors": [
         {
