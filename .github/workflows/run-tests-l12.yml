@@ -1,4 +1,4 @@
-name: "Run Tests - Laravel 11"
+name: "Run Tests - Laravel 12"
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
         laravel: [ 12.* ]
         include:
           - laravel: 12.*
-            testbench: 12.*
+            testbench: 10.*
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }}
 
