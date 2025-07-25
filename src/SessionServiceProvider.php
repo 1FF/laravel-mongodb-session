@@ -25,7 +25,7 @@ class SessionServiceProvider extends ParentServiceProvider
             $configs = $app['config']->get('session');
             $connection = $app['db']->connection($configs['connection'] ?? null);
 
-            return new MongoDbSessionHandler($connection, $configs['table'], $configs['lifetime']);
+            return new MongoDbSessionHandler($connection, $configs['table'], $configs['lifetime'], $app);
         });
 
         // register the collection indexing commands and migrations if running in cli
